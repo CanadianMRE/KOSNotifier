@@ -18,7 +18,8 @@ sound.SoundId = "rbxassetid://6223512980"
 
 -- House KOS List
 local houseKOS = {
-	"XIV"
+	"XIV",
+	"Octavian"
 }
 
 -- KOS list
@@ -30,8 +31,24 @@ local playerKOS = {
 	"XANCYUO"
 }
 
+local function getHouse(plr)
+	for i,v in pairs(plr.Character:GetChildren()) do
+		if v:IsA("Model") and v:FindFirstChild("FakeHumanoid") then
+			local name = v.Name
+			name = name:split(" ")
+			if name[2] then
+				print(name[2])
+				return name[2]
+			else
+				print("No House")
+				return;
+			end
+		end
+	end
+end
+
 -- Sends message saying who found the enemy and what server they are in
-local function WebhookMessage(plr)
+local function WebhookMessage(msg)
 	local Message = {
 		["content"] = "@here",
 		["embeds"] = {
@@ -51,7 +68,7 @@ local function WebhookMessage(plr)
 					},
 					{
 						["name"] = "Player Found:",
-						["value"] = plr
+						["value"] = msg
 					}
 				},
 
@@ -86,10 +103,19 @@ end
 
 -- Notifies if players are found on join
 for i,plr in pairs(Players:GetPlayers()) do
-	print("checkedplayer")
-	if table.find(playerKOS, plr.Name) then
+	print("-----------------")
+	local KOSInHouse = false
+	local House = getHouse(plr)
+	if table.find(houseKOS, House) then
+		KOSInHouse = true
 		notify(plr.Name)
-		WebhookMessage(plr.Name)
+		WebhookMessage(plr.Name, House)
+	end
+	if KOSInHouse == false then
+		if table.find(playerKOS, plr.Name) then
+			notify(plr.Name)
+			WebhookMessage(plr.Name)
+		end
 	end
 end
 
