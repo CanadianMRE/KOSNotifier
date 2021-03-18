@@ -18,8 +18,7 @@ sound.SoundId = "rbxassetid://6223512980"
 
 -- House KOS List
 local houseKOS = {
-	"XIV",
-	"Octavian"
+	"XIV"
 }
 
 -- KOS list
