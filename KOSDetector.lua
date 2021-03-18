@@ -25,7 +25,7 @@ local bannedplayers = {
 	"koehiii",
 	"guest1455386",
 	"XANCYUO",
-	"freshie_grips"
+	"Lanesmoe03"
 }
 
 local function notify(plr)
