@@ -1,4 +1,4 @@
-local WebhookLink = _G.WebhookLink
+local WebhookLink = "https://discord.com/api/webhooks/791912583577206784/6hWeseY_iRunXQdmWLDu-lnTkwlRhM7jklAZ9nCRYB9JUZkTLClrxKeWBOBNknHpKYlg" --_G.WebhookLink
 local StarterGui = game:GetService("StarterGui")
 local Players;
 local Player;
@@ -14,15 +14,16 @@ repeat wait() until Player.Character.HumanoidRootPart ~= nil
 -- Make sound object with random name
 local sound = Instance.new("Sound", Player.Character.HumanoidRootPart)
 sound.Name = math.random(100000, 10000000)
-sound.SoundId = "rbxassetid://6223512980"
+sound.SoundId = "rbxassetid://6537801467"
 local sound2 = Instance.new("Sound", Player.Character.HumanoidRootPart)
 sound2.Name = math.random(100000, 10000000)
-sound2.SoundId = "rbxassetid://6537801467"
+sound2.SoundId = "rbxassetid://6223512980"
 
 -- House KOS List
 local houseKOS = {
 	"Xiv",
-	"Catboy"
+	"Catboy",
+	"Exia"
 }
 
 local houseKOSReasons = {
@@ -45,7 +46,8 @@ local playerKOS = {
 	"potatoladnine",
 	"Gentrems",
 	"Pls_dzinShifter",
-	"Noceres"
+	"Noceres",
+	"reptarogs"
 }
 
 local playerKOSReasons = {
@@ -62,7 +64,8 @@ local playerKOSReasons = {
 	"Gaia dweller. Chases people through servers to ruin prog",-- potatoladnine
 	"Gaian dsage. Basic dweller",-- Gentrems
 	"Gaian shinobi. Basic dweller",-- Pls_dzinShifter
-	"More info needed"-- Noceres
+	"More info needed",-- Noceres,
+	"Kinda cringe"
 }
 
 local function getHouse(plr)
@@ -71,10 +74,8 @@ local function getHouse(plr)
 			local name = v.Name
 			name = name:split(" ")
 			if name[2] then
-				print(name[2])
 				return name[2]
 			else
-				print("No House")
 				return;
 			end
 		end
@@ -82,7 +83,7 @@ local function getHouse(plr)
 end
 
 -- Sends message saying who found the enemy and what server they are in
-local function WebhookMessage(msg)
+local function WebhookMessage(msg, rsn)
 	local Message = {
 		["content"] = "@here",
 		["embeds"] = {
@@ -98,6 +99,10 @@ local function WebhookMessage(msg)
 					{
 						["name"] = "Player Found:",
 						["value"] = msg
+					},
+					{
+						["name"] = "Reasoning:",
+						["value"] = rsn
 					}
 				},
 
@@ -122,38 +127,72 @@ end
 
 
 -- Notifier
-local function notify(text)
-	sound:Play()
+local function notify(text, rsn)
 	StarterGui:SetCore("SendNotification", {
-		Title = "Notification";
+		Title = "Illusionist";
 		Text = text;
-		Duration = 5;
+		Duration = 5000;
 		Button1 = "OK";
 	})
 end
 
 -- Notifies if players are found on join
 for i,plr in pairs(Players:GetPlayers()) do
-	print("-----------------")
 	local KOSInHouse = false
 	local House = getHouse(plr)
-	if table.find(houseKOS, House) then
-		KOSInHouse = true
-		notify(plr.Name.." is in your game. They are on KOS. GET THEM!")
-		WebhookMessage(plr.Name, House)
+	for o, v in pairs(houseKOS) do
+		if House == v then
+        	sound:Play()
+			KOSInHouse = true
+			notify(plr.Name.." is in your game. They are on KOS. GET THEM!", houseKOSReasons[o])
+			WebhookMessage(plr.Name, houseKOSReasons[o])
+		end
 	end
 	if KOSInHouse == false then
-		if table.find(playerKOS, plr.Name) then
-			notify(plr.Name.." is in your game. They are on KOS. GET THEM!")
-			WebhookMessage(plr.Name)
+		for o, v in pairs(playerKOS) do
+			if plr.Name == v then
+            	sound:Play()
+				notify(plr.Name.." is in your game. They are on KOS. GET THEM!", houseKOSReasons[o])
+				WebhookMessage(plr.Name, playerKOSReasons[o])
+			end
 		end
 	end
 end
 
 -- Notifies if a player on the list joins your game
 Players.PlayerAdded:Connect(function(plr)
-	if table.find(playerKOS, plr.Name) then
-		notify(plr.Name)
-		WebhookMessage(plr.Name)
+	local KOSInHouse = false
+	local House = getHouse(plr)
+	for o, v in pairs(houseKOS) do
+		if House == v then
+        	sound:Play()
+			KOSInHouse = true
+			notify(plr.Name.." is in your game. They are on KOS. GET THEM!", houseKOSReasons[o])
+			WebhookMessage(plr.Name, houseKOSReasons[o])
+		end
+	end
+	if KOSInHouse == false then
+		for o, v in pairs(playerKOS) do
+			if plr.Name == v then
+            	sound:Play()
+				notify(plr.Name.." is in your game. They are on KOS. GET THEM!", houseKOSReasons[o])
+				WebhookMessage(plr.Name, playerKOSReasons[o])
+			end
+		end
+	end
+end)
+
+-- Illusionist shit
+for i, plr in pairs(Players:GetPlayers()) do
+	if plr.Backpack:FindFirstChild("Observe") then
+        sound2:Play()
+		notify(plr.Name, "Illusionist")
+	end
+end
+
+Players.PlayerAdded:Connect(function(plr)
+    if plr.Backpack:FindFirstChild("Observe") then
+        sound2:Play()
+		notify(plr.Name, "Illusionist")
 	end
 end)
