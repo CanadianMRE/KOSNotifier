@@ -22,7 +22,6 @@ sound2.SoundId = "rbxassetid://6537801467"
 -- House KOS List
 local houseKOS = {
 	"Xiv",
-	"Famous",
 	"Catboy"
 }
 
