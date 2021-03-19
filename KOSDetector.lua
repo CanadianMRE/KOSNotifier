@@ -35,7 +35,8 @@ local playerKOS = {
 	"jaiden2195",
 	"potatoladnine ",
 	"Gentrems",
-	"Pls_dzinShifter"
+	"Pls_dzinShifter",
+	"Noceres"
 }
 
 local function getHouse(plr)
