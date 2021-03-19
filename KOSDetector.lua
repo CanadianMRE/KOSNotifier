@@ -1,4 +1,4 @@
-local WebhookLink = "https://discord.com/api/webhooks/791912583577206784/6hWeseY_iRunXQdmWLDu-lnTkwlRhM7jklAZ9nCRYB9JUZkTLClrxKeWBOBNknHpKYlg"
+local WebhookLink = _G.WebhookLink
 local StarterGui = game:GetService("StarterGui")
 local Players;
 local Player;
@@ -22,6 +22,7 @@ sound2.SoundId = "rbxassetid://6537801467"
 -- House KOS List
 local houseKOS = {
 	"Xiv",
+	"Famous",
 	"Catboy"
 }
 
@@ -66,17 +67,12 @@ local function WebhookMessage(msg)
 		["embeds"] = {
 			{
 				["title"] = "Found Player on KOS",
-				["description"] = "Found by: "..Player.Name,
 				["color"] = 16711680,
 
 				["fields"] = {
 					{
 						["name"] = "Job ID: ",
 						["value"] = game.JobId
-					},
-					{
-						["name"] = "Account Join Link: ",
-						["value"] = "https://www.roblox.com/users/"..Player.UserId
 					},
 					{
 						["name"] = "Player Found:",
@@ -102,12 +98,14 @@ local function WebhookMessage(msg)
 	});
 end
 
+
+
 -- Notifier
-local function notify(plr)
+local function notify(text)
 	sound:Play()
 	StarterGui:SetCore("SendNotification", {
 		Title = "Notification";
-		Text = plr.." is in your game. They are on KOS. GET THEM!";
+		Text = text;
 		Duration = 5;
 		Button1 = "OK";
 	})
@@ -120,12 +118,12 @@ for i,plr in pairs(Players:GetPlayers()) do
 	local House = getHouse(plr)
 	if table.find(houseKOS, House) then
 		KOSInHouse = true
-		notify(plr.Name)
+		notify(plr.Name.." is in your game. They are on KOS. GET THEM!")
 		WebhookMessage(plr.Name, House)
 	end
 	if KOSInHouse == false then
 		if table.find(playerKOS, plr.Name) then
-			notify(plr.Name)
+			notify(plr.Name.." is in your game. They are on KOS. GET THEM!")
 			WebhookMessage(plr.Name)
 		end
 	end
