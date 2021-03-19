@@ -22,8 +22,12 @@ sound2.SoundId = "rbxassetid://6537801467"
 -- House KOS List
 local houseKOS = {
 	"Xiv",
-	"Famous",
 	"Catboy"
+}
+
+local houseKOSReasons = {
+	"Annoying House which wiped 2 house members with tomeless pit",-- Xiv
+	"Kinda gay tbh :/"-- Catboy
 }
 
 -- KOS list
@@ -38,10 +42,27 @@ local playerKOS = {
 	"eIaMain",
 	"EliteGhost2992",
 	"jaiden2195",
-	"potatoladnine ",
+	"potatoladnine",
 	"Gentrems",
 	"Pls_dzinShifter",
 	"Noceres"
+}
+
+local playerKOSReasons = {
+	"FF Bard, Xiv member",-- AltroScraps
+	"Xiv member. Helped with tomeless",-- aahoura
+	"Xiv member. Helped with tomeless",-- koehiii
+	"Xiv member. Helped with tomeless",-- guest1455386
+	"Snitch ass bitch",-- XANCYUO
+	"Gaia dweller. Chases people through servers to ruin prog",-- eliteghosthaircut
+	"Gaia dweller. Chases people through servers to ruin prog",-- caym354
+	"Gaia dweller. Chases people through servers to ruin prog",-- eIaMain
+	"Gaia dweller. Chases people through servers to ruin prog",-- EliteGhost2992
+	"Gaia dweller. Chases people through servers to ruin prog",-- jaiden2195
+	"Gaia dweller. Chases people through servers to ruin prog",-- potatoladnine
+	"Gaian dsage. Basic dweller",-- Gentrems
+	"Gaian shinobi. Basic dweller",-- Pls_dzinShifter
+	"More info needed"-- Noceres
 }
 
 local function getHouse(plr)
