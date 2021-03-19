@@ -15,10 +15,15 @@ repeat wait() until Player.Character.HumanoidRootPart ~= nil
 local sound = Instance.new("Sound", Player.Character.HumanoidRootPart)
 sound.Name = math.random(100000, 10000000)
 sound.SoundId = "rbxassetid://6223512980"
+local sound2 = Instance.new("Sound", Player.Character.HumanoidRootPart)
+sound2.Name = math.random(100000, 10000000)
+sound2.SoundId = "rbxassetid://6537801467"
 
 -- House KOS List
 local houseKOS = {
-	"XIV"
+	"Xiv",
+	"Famous",
+	"Catboy"
 }
 
 -- KOS list
