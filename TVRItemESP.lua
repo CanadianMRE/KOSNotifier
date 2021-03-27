@@ -11,7 +11,7 @@ local colorList = {
 }
 
 local espPartList = {
-	["248, 248, 248"] = "Paper"
+	[tostring(Color3.fromRGB(248, 248, 248))] = "Paper"
 }
 
 -- Makes a label when called
@@ -46,17 +46,16 @@ local function ESPList(v)
 			local name = espList[meshId]
 			local color = mesh.Color
 			--[[if colorList[name] then
-				color = colorList[name]
+			    local temp = colorList[name]
+				color = Color3(temp)
 			end]]
 			CreateLabel(mesh, name, color)
 		end
 	else
-		for i, v in pairs(v:GetChildren()) do
-			if v:IsA("Part") then
-				local color = v.Color
-				local colorSplit = tostring(color.R)..", "..tostring(color.G)..", "..tostring(color.B)
-				if espPartList[colorSplit] then
-					CreateLabel(v, espPartList[colorSplit], color)
+		for i, n in pairs(v:GetChildren()) do
+			if n:IsA("UnionOperation") then
+				if espPartList[tostring(n.Color)] then
+					CreateLabel(n, espPartList[tostring(n.Color)], n.Color)
 				end
 			end
 		end
