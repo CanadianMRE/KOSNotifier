@@ -8,7 +8,7 @@ local espMeshList = {
 local colorList = {
 	["Bracelet"] = Color3.fromRGB(135, 135, 135),
 	["Cup"] = Color3.fromRGB(188, 155, 93),
-	["Sealed Book"] = Color3.fromRGB(185, 185, 0),
+	["Sealed Book"] = Color3.fromRGB(3, 11, 252),
 	["Cursed Book"] = Color3.fromRGB(74, 5, 176)
 }
 
