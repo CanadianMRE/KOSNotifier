@@ -16,24 +16,26 @@ local espPartList = {
 
 -- Makes a label when called
 local function CreateLabel(v, name, color)
-	local Billboard = Instance.new("BillboardGui")
-	Billboard.Name = math.random(100000,10000000)
-	local TextLabel = Instance.new("TextLabel")
-	TextLabel.Name = math.random(100000,10000000)
+    local Billboard = Instance.new("BillboardGui")
+    syn.protect_gui(Billboard)
+    Billboard.Name = math.random(100000,10000000)
+    local TextLabel = Instance.new("TextLabel")
+    TextLabel.Name = math.random(100000,10000000)
 
-	Billboard.Parent = v
-	Billboard.AlwaysOnTop = true
-	Billboard.LightInfluence = 1
-	Billboard.Size = UDim2.new(0, 50, 0, 50)
-	Billboard.StudsOffset = Vector3.new(0, 0, 0)
+    Billboard.Parent = game:GetService("CoreGui")
+        Billboard.Adornee = v
+    Billboard.AlwaysOnTop = true
+    Billboard.LightInfluence = 1
+    Billboard.Size = UDim2.new(0, 50, 0, 50)
+    Billboard.StudsOffset = Vector3.new(0, 0, 0)
 
-	TextLabel.Parent = Billboard
-	TextLabel.BackgroundColor3 = color
-	TextLabel.BackgroundTransparency = 1
-	TextLabel.Size = UDim2.new(0.5, 0, 1, 0)
-	TextLabel.Text = name
-	TextLabel.TextColor3 = color
-	TextLabel.TextScaled = true
+    TextLabel.Parent = Billboard
+    TextLabel.BackgroundColor3 = color
+    TextLabel.BackgroundTransparency = 1
+    TextLabel.Size = UDim2.new(0.5, 0, 1, 0)
+    TextLabel.Text = name
+    TextLabel.TextColor3 = color
+    TextLabel.TextScaled = true
 end
 
 local function ESPList(v)
