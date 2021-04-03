@@ -17,7 +17,7 @@ local espPartList = {
 }
 
 -- Makes a label when called
-local function CreateLabel(v, name, color)
+local function CreateLabel(object, name, color)
 	local Billboard = Instance.new("BillboardGui")
 	syn.protect_gui(Billboard)
 	Billboard.Name = math.random(100000,10000000)
@@ -25,7 +25,7 @@ local function CreateLabel(v, name, color)
 	TextLabel.Name = math.random(100000,10000000)
 
 	Billboard.Parent = game:GetService("CoreGui")
-	Billboard.Adornee = v
+	Billboard.Adornee = object
 	Billboard.AlwaysOnTop = true
 	Billboard.LightInfluence = 1
 	Billboard.Size = UDim2.new(0, 50, 0, 50)
@@ -41,6 +41,12 @@ local function CreateLabel(v, name, color)
 	TextLabel.BorderMode = "Outline"
 	TextLabel.BorderSizePixel = 2
 	TextLabel.BorderColor3 = Color3.fromRGB(27, 42, 53)
+	
+	Billboard.Changed:Connect(function(prop)
+		if Billboard.Adornee ~= object then
+			Billboard:Destroy()
+		end
+	end)
 end
 
 local function ESPList(v)
