@@ -23,7 +23,8 @@ local playerKOS = {
 	["jaiden2195"] = "being a gaiadweller who chases through servers.",
 	["potatoladnine"] = "being a gaiadweller who chases through servers.",
 	["Gentrems"] = "being a gaiadweller.",
-	["Pls_dzinShifter"] = "being a gaiadweller."
+	["Pls_dzinShifter"] = "being a gaiadweller.",
+	["containdiscoverygas"] = "Freshie Killer"
 }
 
 local function getHouse(plr)
